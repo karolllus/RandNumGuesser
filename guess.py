@@ -26,7 +26,6 @@ def make_guess(guessList: list, hint: str, minNum: int, maxNum: int):
             elif last_guess > before_last_guess:
                 maxNum = int((last_guess + before_last_guess)/2)
         guess = rn.randint(minNum, maxNum)  # make a guess
-        
         if guess not in guessList:
             guessList.append(guess)
             return guess, guessList, minNum, maxNum
@@ -64,7 +63,9 @@ def main_process(minNum: int, maxNum: int):
     hint = ""
     while True:
         count += 1
-        guess, guessListm, minNum, maxNum = make_guess(guessList, hint, minNum, maxNum)
+        # guess = generate_num(minNum, maxNum)
+        guess, guessListm, minNum, maxNum = make_guess(guessList, hint, minNum, 
+                                                       maxNum)
         if check_guess(num, guess):
             break
         else:
@@ -75,6 +76,6 @@ def main_process(minNum: int, maxNum: int):
 
 if __name__ == "__main__":
     count = []
-    for x in range(10000):
-        count.append(main_process(1, 100))
+    for x in range(1000):
+        count.append(main_process(1, 10000))
     print(sum(count)/len(count))
